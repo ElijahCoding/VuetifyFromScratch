@@ -8,8 +8,8 @@ var config = {
     projectId: "vue-project-20372",
     storageBucket: "vue-project-20372.appspot.com",
     messagingSenderId: "1019969519515"
-  }
- firebase.initializeApp(config)
+  };
+  firebase.initializeApp(config);
 
  const db = firebase.firestore()
  db.settings({ timestampsInSnapshots: true })

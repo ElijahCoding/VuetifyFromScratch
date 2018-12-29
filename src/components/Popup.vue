@@ -28,6 +28,7 @@
 
 <script>
 import moment from 'moment'
+import db from '@/fb'
 
 export default {
   data() {
@@ -45,13 +46,22 @@ export default {
   methods: {
     submit() {
         if(this.$refs.form.validate()) {
-          console.log(this.title, this.content)
+            const project = {
+                title: this.title,
+                content: this.content,
+                due: moment(this.due).format('Do MMM YYYY'),
+                person: 'Elijah',
+                status: 'ongoing'
+            }
+
+            db.collection('projects').add(project).then(() => {
+                console.log('added to db')
+            })
         }
     }
   },
   computed: {
     formattedDate () {
-      console.log(this.due)
       return this.due ? moment(this.due).format('Do MMM YYYY') : ''
     }
   }
